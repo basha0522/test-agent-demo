@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1783775558665" clover="3.2.0">
-  <project timestamp="1783775558665" name="All files">
+<coverage generated="1783775719363" clover="3.2.0">
+  <project timestamp="1783775719363" name="All files">
     <metrics statements="12" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2" elements="18" coveredelements="7" complexity="0" loc="12" ncloc="12" packages="1" files="2" classes="2"/>
     <file name="example.ts" path="/home/runner/work/test-agent-demo/test-agent-demo/src/example.ts">
       <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
