@@ -2,11 +2,20 @@ const fs = require('fs');
 const path = require('path');
 
 async function generateTests() {
-  const files = fs.readdirSync('src').filter(f => f.endsWith('.ts') && !f.endsWith('.test.ts'));
+  const changedFiles = (process.env.CHANGED_FILES || '')
+    .split('\n')
+    .map(f => f.trim())
+    .filter(f => f && (f.endsWith('.ts') || f.endsWith('.js')));
 
-  for (const file of files) {
-    const sourceCode = fs.readFileSync(path.join('src', file), 'utf-8');
-    const moduleName = file.replace('.ts', '');   // e.g. "math"
+  if (changedFiles.length === 0) {
+    console.log('No new/changed source files to generate tests for.');
+    return;
+  }
+
+  for (const filePath of changedFiles) {
+    const sourceCode = fs.readFileSync(filePath, 'utf-8');
+    const ext = path.extname(filePath);          // .ts or .js
+    const moduleName = path.basename(filePath, ext);
 
     const response = await fetch('https://models.github.ai/inference/chat/completions', {
       method: 'POST',
@@ -17,42 +26,32 @@ async function generateTests() {
       },
       body: JSON.stringify({
         model: 'openai/gpt-4o',
-        messages: [
-          {
-            role: 'user',
-            content: `Write a Jest unit test file for the TypeScript code below.
+        messages: [{
+          role: 'user',
+          content: `Write a Jest unit test file for the code below (language: ${ext === '.ts' ? 'TypeScript' : 'JavaScript'}).
 
 STRICT REQUIREMENTS:
-- The code below is in a file named "${file}".
-- Your test file must import from './${moduleName}' exactly — do not invent or guess a different import path.
-- Return ONLY valid TypeScript test code. No markdown fences, no explanation, no placeholder text.
+- The file is named "${path.basename(filePath)}".
+- Import from './${moduleName}' exactly.
+- Return ONLY valid ${ext === '.ts' ? 'TypeScript' : 'JavaScript'} test code. No markdown fences, no explanation.
 - Cover normal cases and at least one edge case per exported function.
 
 Source code:
 ${sourceCode}`
-          }
-        ]
+        }]
       })
     });
 
-    if (!response.ok) {
-      const errText = await response.text();
-      throw new Error(`API call failed: ${response.status} ${errText}`);
-    }
+    if (!response.ok) throw new Error(`API call failed: ${response.status} ${await response.text()}`);
 
     const data = await response.json();
     let testCode = data.choices[0].message.content;
+    testCode = testCode.replace(/^```(?:typescript|javascript|ts|js)?\n?/, '').replace(/```$/, '').trim();
 
-    // Safety net: strip markdown fences if the model adds them anyway
-    testCode = testCode.replace(/^```(?:typescript|ts)?\n?/, '').replace(/```$/, '').trim();
-
-    const testFileName = file.replace('.ts', '.test.ts');
-    fs.writeFileSync(path.join('src', testFileName), testCode);
-    console.log(`Generated ${testFileName}`);
+    const testFilePath = path.join(path.dirname(filePath), `${moduleName}.test${ext}`);
+    fs.writeFileSync(testFilePath, testCode);
+    console.log(`Generated ${testFilePath}`);
   }
 }
 
-generateTests().catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+generateTests().catch(err => { console.error(err); process.exit(1); });
