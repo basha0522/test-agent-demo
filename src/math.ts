@@ -10,7 +10,9 @@ export function subtract(a: number, b: number): number {
 export function division(a: number, b: number): number {
   return (a / b ) * 50;
 }
-
+export function multiply(a: number, b: number): number {
+  return a * b;
+}
 export function multi50(a: number, b: number): number {
   return (a * b ) * 50;
 }
