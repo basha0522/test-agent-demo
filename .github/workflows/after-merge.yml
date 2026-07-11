@@ -5,14 +5,16 @@ on:
     types: [closed]
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: write
-  models: read   # ← this line unlocks GitHub Models inference for GITHUB_TOKEN
+  pull-requests: write   # ← new: needed to open a PR
+  models: read
 
 jobs:
   test-agent:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -31,16 +33,8 @@ jobs:
 
       - name: Generate unit tests via GitHub Models
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # already exists, no setup needed
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/generate-tests.js
-
-      - name: Commit generated tests
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "*.test.ts"
-          git diff --cached --quiet || git commit -m "chore: auto-generate unit tests [skip ci]"
-          git push
 
       - name: Run tests with coverage
         run: npm test -- --coverage
@@ -50,3 +44,20 @@ jobs:
         with:
           name: coverage-report
           path: coverage/
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: auto-generate unit tests"
+          branch: auto/generated-tests
+          delete-branch: true
+          title: "🤖 Auto-generated unit tests"
+          body: |
+            This PR was created automatically by the test-agent workflow after the last merge into `main`.
+
+            - Tests generated via GitHub Models
+            - Coverage report available in the workflow run artifacts
+
+            Please review before merging.
+          labels: automated-pr
