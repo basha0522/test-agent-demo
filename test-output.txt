@@ -1,0 +1,28 @@
+
+> gitworkflowsetup@1.0.0 test
+> jest --coverage --json --outputFile=test-results.json
+
+PASS src/math.test.ts
+  add
+    ✓ should return the sum of two positive numbers (2 ms)
+    ✓ should return the sum of a positive and a negative number
+    ✓ should return the sum of two negative numbers
+    ✓ should return zero when adding zero to zero (1 ms)
+  subtract
+    ✓ should return the difference of two positive numbers
+    ✓ should return the difference of a positive and a negative number
+    ✓ should return the difference of two negative numbers
+    ✓ should return zero when subtracting a number from itself
+
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------|---------|----------|---------|---------|-------------------
+All files |   83.33 |      100 |   66.66 |   83.33 |                   
+ math.ts  |   83.33 |      100 |   66.66 |   83.33 | 9                 
+----------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        0.672 s
+Ran all test suites.
+Test results written to: test-results.json
