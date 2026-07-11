@@ -35,7 +35,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/generate-tests.js
+        
+      - name: Run tests with coverage
+        id: run_tests
+        continue-on-error: true          # ← don't kill the job on test failure
+        run: |
+          npm test -- --coverage --json --outputFile=test-results.json 2>&1 | tee test-output.txt
+          echo "test_exit_code=$?" >> $GITHUB_OUTPUT
 
+      - name: Build test summary
+        if: always()
+        run: |
+          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          tail -n 30 test-output.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
       - name: Run tests with coverage
         run: npm test -- --coverage
 
