@@ -5,3 +5,13 @@ export function add(a: number, b: number): number {
 export function subtract(a: number, b: number): number {
   return a - b;
 }
+export function division(a: number, b: number): number {
+  return (a / b ) * 50;
+}
+
+export function multi50(a: number, b: number): number {
+  return (a * b ) * 50;
+}
+export function multi75(a: number, b: number): number {
+  return (a * b ) * 75;
+}

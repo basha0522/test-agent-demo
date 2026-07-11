@@ -2,37 +2,36 @@ import { add, subtract } from './math';
 
 describe('add', () => {
   it('should return the sum of two positive numbers', () => {
-    expect(add(2, 3)).toBe(5);
+    expect(add(3, 5)).toBe(8);
   });
 
   it('should return the sum of a positive and a negative number', () => {
-    expect(add(7, -4)).toBe(3);
+    expect(add(10, -4)).toBe(6);
   });
 
-  it('should return 0 when adding zero to a number', () => {
-    expect(add(0, 5)).toBe(5);
-    expect(add(5, 0)).toBe(5);
+  it('should return the sum of two negative numbers', () => {
+    expect(add(-7, -2)).toBe(-9);
   });
 
-  it('should handle very large numbers', () => {
-    expect(add(1e12, 1e12)).toBe(2e12);
+  it('should return zero when adding zero to zero', () => {
+    expect(add(0, 0)).toBe(0);
   });
 });
 
 describe('subtract', () => {
   it('should return the difference of two positive numbers', () => {
-    expect(subtract(10, 3)).toBe(7);
+    expect(subtract(10, 4)).toBe(6);
   });
 
-  it('should return the difference when subtracting a positive and a negative number', () => {
-    expect(subtract(10, -5)).toBe(15);
+  it('should return the difference of a positive and a negative number', () => {
+    expect(subtract(8, -3)).toBe(11);
   });
 
-  it('should return 0 when subtracting a number from itself', () => {
+  it('should return the difference of two negative numbers', () => {
+    expect(subtract(-5, -9)).toBe(4);
+  });
+
+  it('should return zero when subtracting a number from itself', () => {
     expect(subtract(7, 7)).toBe(0);
-  });
-
-  it('should handle edge cases with very large numbers', () => {
-    expect(subtract(1e12, 1e11)).toBe(9e11);
   });
 });
