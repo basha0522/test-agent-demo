@@ -4,12 +4,12 @@ FN:1,add
 FN:5,subtract
 FNF:2
 FNH:2
-FNDA:6,add
-FNDA:7,subtract
+FNDA:4,add
+FNDA:4,subtract
 DA:1,1
-DA:2,6
+DA:2,4
 DA:5,1
-DA:6,7
+DA:6,4
 LF:4
 LH:4
 BRF:0
