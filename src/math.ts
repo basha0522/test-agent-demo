@@ -28,3 +28,7 @@ export function multi100(a: number, b: number): number {
 export function multi200(a: number, b: number): number {
   return (a * b ) * 200;
 }
+
+export function multi300(a: number, b: number): number {
+  return (a * b ) * 300;
+}
