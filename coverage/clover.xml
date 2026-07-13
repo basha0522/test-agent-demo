@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1783934382354" clover="3.2.0">
-  <project timestamp="1783934382354" name="All files">
-    <metrics statements="24" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="9" elements="36" coveredelements="27" complexity="0" loc="24" ncloc="24" packages="1" files="2" classes="2"/>
+<coverage generated="1783934761153" clover="3.2.0">
+  <project timestamp="1783934761153" name="All files">
+    <metrics statements="26" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="10" elements="39" coveredelements="30" complexity="0" loc="26" ncloc="26" packages="1" files="2" classes="2"/>
     <file name="example.ts" path="/home/runner/work/test-agent-demo/test-agent-demo/src/example.ts">
       <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <line num="1" count="0" type="stmt"/>
@@ -12,25 +12,27 @@
       <line num="8" count="0" type="stmt"/>
     </file>
     <file name="math.ts" path="/home/runner/work/test-agent-demo/test-agent-demo/src/math.ts">
-      <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="9"/>
+      <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="10"/>
       <line num="1" count="1" type="stmt"/>
-      <line num="2" count="2" type="stmt"/>
+      <line num="2" count="4" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
-      <line num="5" count="2" type="stmt"/>
+      <line num="5" count="4" type="stmt"/>
       <line num="7" count="1" type="stmt"/>
-      <line num="8" count="2" type="stmt"/>
+      <line num="8" count="4" type="stmt"/>
       <line num="10" count="1" type="stmt"/>
-      <line num="11" count="2" type="stmt"/>
+      <line num="11" count="4" type="stmt"/>
       <line num="13" count="1" type="stmt"/>
-      <line num="14" count="2" type="stmt"/>
+      <line num="14" count="4" type="stmt"/>
       <line num="16" count="1" type="stmt"/>
-      <line num="17" count="2" type="stmt"/>
+      <line num="17" count="4" type="stmt"/>
       <line num="20" count="1" type="stmt"/>
-      <line num="21" count="2" type="stmt"/>
+      <line num="21" count="4" type="stmt"/>
       <line num="24" count="1" type="stmt"/>
-      <line num="25" count="2" type="stmt"/>
+      <line num="25" count="4" type="stmt"/>
       <line num="28" count="1" type="stmt"/>
-      <line num="29" count="2" type="stmt"/>
+      <line num="29" count="4" type="stmt"/>
+      <line num="32" count="1" type="stmt"/>
+      <line num="33" count="4" type="stmt"/>
     </file>
   </project>
 </coverage>
