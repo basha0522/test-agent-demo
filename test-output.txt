@@ -3,66 +3,61 @@
 > jest --coverage --json --outputFile=test-results.json
 
 FAIL src/math.test.ts
-  Math functions
+  math functions
     add
-      ✓ should add two positive numbers (2 ms)
-      ✓ should handle adding zero
-      ✓ should add two negative numbers
+      ✓ should correctly add two numbers (3 ms)
+      ✓ should handle edge case of adding zero (1 ms)
     addition
-      ✓ should add two positive numbers and 50
-      ✓ should handle adding zero and 50 (1 ms)
-      ✓ should add two negative numbers and 50
+      ✓ should correctly add two numbers and add 50 (1 ms)
+      ✓ should handle edge case of adding zero
     subtract
-      ✓ should subtract two positive numbers
-      ✓ should handle subtraction resulting in zero
-      ✓ should subtract a larger number from a smaller one (negative result)
+      ✓ should correctly subtract two numbers
+      ✓ should handle edge case of subtracting a larger number (1 ms)
     division
-      ✓ should divide two positive numbers and multiply by 50 (1 ms)
-      ✓ should handle division by a smaller positive number (1 ms)
-      ✕ should handle division by zero (edge case) (2 ms)
+      ✓ should correctly divide two numbers and multiply by 50 (1 ms)
+      ✕ should handle edge case of division by zero (1 ms)
     multiply
-      ✓ should multiply two positive numbers (1 ms)
-      ✓ should handle multiplication with zero
-      ✓ should multiply a negative and a positive number
+      ✓ should correctly multiply two numbers (1 ms)
+      ✓ should handle edge case of multiplying by zero (1 ms)
     multi50
-      ✓ should multiply two positive numbers and multiply by 50
-      ✓ should handle multiplication with zero
-      ✓ should multiply two negative numbers and multiply by 50
+      ✓ should correctly multiply two numbers and multiply by 50 (1 ms)
+      ✓ should handle edge case of multiplying by zero (1 ms)
     multi75
-      ✓ should multiply two positive numbers and multiply by 75 (1 ms)
-      ✓ should handle multiplication with zero (1 ms)
-      ✓ should multiply a negative and a positive number and multiply by 75
+      ✓ should correctly multiply two numbers and multiply by 75
+      ✓ should handle edge case of multiplying by zero
     multi100
-      ✓ should multiply two positive numbers and multiply by 100 (1 ms)
-      ✓ should handle multiplication with zero
-      ✓ should multiply a negative and a positive number and multiply by 100
+      ✓ should correctly multiply two numbers and multiply by 100
+      ✓ should handle edge case of multiplying by zero (1 ms)
+    multi200
+      ✓ should correctly multiply two numbers and multiply by 200 (1 ms)
+      ✓ should handle edge case of multiplying by zero (1 ms)
 
-  ● Math functions › division › should handle division by zero (edge case)
+  ● math functions › division › should handle edge case of division by zero
 
     expect(received).toThrow()
 
     Received function did not throw
 
-    [0m [90m 54 |[39m
-     [90m 55 |[39m     it([32m'should handle division by zero (edge case)'[39m[33m,[39m () [33m=>[39m {
-    [31m[1m>[22m[39m[90m 56 |[39m       expect(() [33m=>[39m division([35m10[39m[33m,[39m [35m0[39m))[33m.[39mtoThrow()[33m;[39m
+    [0m [90m 39 |[39m
+     [90m 40 |[39m     it([32m'should handle edge case of division by zero'[39m[33m,[39m () [33m=>[39m {
+    [31m[1m>[22m[39m[90m 41 |[39m       expect(() [33m=>[39m division([35m10[39m[33m,[39m [35m0[39m))[33m.[39mtoThrow()[33m;[39m
      [90m    |[39m                                     [31m[1m^[22m[39m
-     [90m 57 |[39m     })[33m;[39m
-     [90m 58 |[39m   })[33m;[39m
-     [90m 59 |[39m[0m
+     [90m 42 |[39m     })[33m;[39m
+     [90m 43 |[39m   })[33m;[39m
+     [90m 44 |[39m[0m
 
-      at Object.<anonymous> (src/math.test.ts:56:37)
+      at Object.<anonymous> (src/math.test.ts:41:37)
 
 ------------|---------|----------|---------|---------|-------------------
 File        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------|---------|----------|---------|---------|-------------------
-All files   |   72.72 |      100 |   72.72 |   72.72 |                   
+All files   |      75 |      100 |      75 |      75 |                   
  example.ts |       0 |      100 |       0 |       0 | 1-8               
  math.ts    |     100 |      100 |     100 |     100 |                   
 ------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
-Tests:       1 failed, 23 passed, 24 total
+Tests:       1 failed, 17 passed, 18 total
 Snapshots:   0 total
-Time:        1.294 s
+Time:        1.244 s
 Ran all test suites.
 Test results written to: test-results.json
